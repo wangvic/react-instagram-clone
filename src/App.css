@@ -9,10 +9,7 @@
 
 .app__header {
   background-color: white;
-  padding-left: 20px;
-  padding-top: 16px;
-  padding-right: 16px;
-  padding-bottom: 4px;
+  padding: 16px 16px 4px 20px;
   object-fit: contain;
   border-bottom: 1px solid lightgray;
 }
