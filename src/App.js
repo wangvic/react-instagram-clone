@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from './Post';
+import { db } from './firebase';
 
 function App() {
-  const [posts, setPosts] = useState([
-    {
-      username: 'vic.leiwang',
-      caption: 'React JS is cool!',
-      imageUrl:
-        'https://www.freecodecamp.org/news/content/images/size/w2000/2020/02/Ekran-Resmi-2019-11-18-18.08.13.png',
-    },
-    {
-      username: 'tanyayao',
-      caption: 'Flutter is better!',
-      imageUrl: 'https://hackr.io/blog/react-native-vs-flutter/thumbnail/large',
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
+
+  // UseEffect runs a piece of code based on a specific condition
+  useEffect(() => {
+    // This is where the code runs
+    db.collection('posts').onSnapshot((snapshot) => {
+      // Every time a new post is added, this code fires
+      setPosts(snapshot.docs.map((doc) => doc.data()));
+    });
+  }, []);
 
   return (
     <div className="app">
