@@ -12,10 +12,13 @@
   padding: 16px 16px 4px 20px;
   object-fit: contain;
   border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
 }
 
 .app__headerImage {
   height: 29px;
+  object-fit: contain;
 }
 
 .app__signup {
