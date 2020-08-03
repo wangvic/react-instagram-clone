@@ -60,15 +60,17 @@ function App() {
   // UseEffect runs a piece of code based on a specific condition
   useEffect(() => {
     // This is where the code runs
-    db.collection('posts').onSnapshot((snapshot) => {
-      // Every time a new post is added, this code fires
-      setPosts(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          post: doc.data(),
-        }))
-      );
-    });
+    db.collection('posts')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot((snapshot) => {
+        // Every time a new post is added, this code fires
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            post: doc.data(),
+          }))
+        );
+      });
   }, []);
 
   const signUp = (event) => {
